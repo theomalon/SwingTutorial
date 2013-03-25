@@ -19,9 +19,11 @@ public class FirstProgramUI extends JFrame{
        getContentPane().add(panel);
 
        panel.setLayout(null);
+       panel.setToolTipText("A Panel container");
 
        JButton quitButton = new JButton("Quit");
        quitButton.setBounds(50, 60, 80, 30);
+       quitButton.setToolTipText("A quit button");
        quitButton.addActionListener(new ActionListener() {
            public void actionPerformed(ActionEvent event) {
                System.exit(0);
