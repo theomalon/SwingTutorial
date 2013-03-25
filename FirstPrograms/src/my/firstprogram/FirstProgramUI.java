@@ -1,12 +1,15 @@
 //Chris Malon
 package my.firstprogram;
     
-    import java.awt.event.ActionEvent;
-    import java.awt.event.ActionListener;
-    import javax.swing.JButton;
-    import javax.swing.JFrame;
-    import javax.swing.JPanel;
-    import javax.swing.SwingUtilities;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.SwingUtilities;
 
 public class FirstProgramUI extends JFrame{
     
@@ -15,27 +18,32 @@ public class FirstProgramUI extends JFrame{
     }
     
     public final void initUI(){
-       JPanel panel = new JPanel();
-       getContentPane().add(panel);
+       
+        JMenuBar menubar = new JMenuBar();
+        ImageIcon icon = new ImageIcon(getClass().getResource("exit.png"));
+        
+        JMenu file = new JMenu("File");
+        file.setMnemonic(KeyEvent.VK_F);
+        
+        JMenuItem  eMenuItem = new JMenuItem("Exit", icon);
+        eMenuItem.setMnemonic(KeyEvent.VK_C);
+        eMenuItem.setToolTipText("Exit application");
+        eMenuItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+                System.exit(0);
+           }
+        });
 
-       panel.setLayout(null);
-       panel.setToolTipText("A Panel container");
-
-       JButton quitButton = new JButton("Quit");
-       quitButton.setBounds(50, 60, 80, 30);
-       quitButton.setToolTipText("A quit button");
-       quitButton.addActionListener(new ActionListener() {
-           public void actionPerformed(ActionEvent event) {
-               System.exit(0);
-          }
-       });
-
-       panel.add(quitButton); 
-       setTitle("Quit Button");
-       setSize(300, 200);
-       setLocationRelativeTo(null);
-       setDefaultCloseOperation(EXIT_ON_CLOSE);
+        file.add(eMenuItem);
+        menubar.add(file);
+        setJMenuBar(menubar);
+        
+        setTitle("Simple menu");
+        setSize(300, 200);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
+    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
